@@ -1,0 +1,26 @@
+{
+    "id": "5D505E59",
+    "path": "C:/R_packages/BirdnetVisualizeR/R/phenochart_single.R",
+    "project_path": "R/phenochart_single.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1739435375363.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "21,30",
+        "scrollLine": "14"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1739436642,
+    "encoding": "ISO8859-1",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1739436642783,
+    "read_only": false,
+    "read_only_alternatives": []
+}

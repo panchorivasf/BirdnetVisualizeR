@@ -1,0 +1,26 @@
+{
+    "id": "D4CC6A1B",
+    "path": "C:/R_packages/BirdnetVisualizeR/R/import_birdnet.R",
+    "project_path": "R/import_birdnet.R",
+    "type": "r_source",
+    "hash": "2797665062",
+    "contents": "",
+    "dirty": false,
+    "created": 1739435374195.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "54,0",
+        "scrollLine": "26"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1739436802,
+    "encoding": "ISO8859-1",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1739436802915,
+    "read_only": false,
+    "read_only_alternatives": []
+}
