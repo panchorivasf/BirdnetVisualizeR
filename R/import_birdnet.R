@@ -3,7 +3,8 @@
 #' @param files Files to be imported
 #' @param format Character. The file format; either "csv" or "txt".
 #' @param conf Character. Filter by confidence level. Defaults to 0.5 (50%).
-#' @param combined Logical. Whether to analyze a single combined CSV.
+#' @param combined Logical. Whether to analyze a single combined CSV. Defaut is
+#' TRUE.
 #'
 #' @returns a tibble.
 #' @import warbleR dplyr tidyr lubridate
@@ -12,12 +13,12 @@
 #' @examples
 #'  \dontrun{
 #'  csvs <- list_csvs()
-#'  import_birdnet2(csvs)
+#'  import_birdnet(csvs)
 #'  }
-import_birdnet2 <- function(files,
+import_birdnet <- function(files,
                            format = "csv",
                            conf = 0.5,
-                           combined = FALSE) {
+                           combined = TRUE) {
 
   if (combined) {
     # Handle combined CSV case
