@@ -69,9 +69,10 @@ top_species <- function(birdnet_list, site_id = "", n_species = 10){
   top10rate.plot <- create_plot(birdnet_list |>
                                   arrange(desc(call.rate)) |>
                                   top_n(n_species, call.rate),
-                                "call.rate.day",
+                                "call.rate",
                                 "",
-                                "Species", "Diel Call Rate (N calls / N days detected)")
+                                "Species",
+                                "Diel Call Rate (N calls / N days detected)")
 
   # Combine the plots
   finalPlot <- top10days.plot / top10calls.plot / top10rate.plot
