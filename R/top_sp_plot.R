@@ -1,4 +1,4 @@
-#' Top 10 species
+#' Top N species
 #'
 #' @description
 #' Get a stacked bar plot with top 10 species (i.e., the most detected)
@@ -17,9 +17,9 @@
 #'
 #' @examples
 #' \dontrun{
-#' top10statsPlot(S4A17644_list, " - sensor S4A17644")
+#' top_sp_plot(S4A17644_list, " - sensor S4A17644")
 #' }
-topten_plot <- function(birdnet_list, site_id){
+top_sp_plot <- function(birdnet_list, site_id){
 
   # Create a unified list of top 10 species across all categories
   top_species <- birdnet_list |>

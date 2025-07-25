@@ -78,28 +78,3 @@ phenochart_single <- function(df,
 
   print(plot)
 }
-
-# Example usage
-phenoSingleWeek <- phenoChartSingleSp2(BirdnetDetections, "Pin-striped Tit-Babbler", "week")
-phenoSingleDay <- phenoChartSingleSp2(BirdnetDetections, "Pin-striped Tit-Babbler", "day")
-
-# Mangrove Whistler
-phenoSingleWeek <- phenoChartSingleSp2(BirdnetDetections, "Mangrove Whistler", "week")
-phenoSingleDay <- phenoChartSingleSp2(BirdnetDetections, "Mangrove Whistler", "day")
-
-
-
-
-
-setwd("C:\\Users\\frivasfu\\Desktop\\CGS\\R_code_BirdNET\\plots_examples")
-phenoSingleWeek <- phenoChartSingleSp2(BirdnetDetections, "Otus sunia", "week")
-
-ggsave("pheno.single.week.png", bg = "white",
-       height = 500, width = 2500, units = 'px',
-       dpi = 200)
-
-
-phenoSingleWeek <- phenoChartSingleSp2(BirdnetDetections, "Otus sunia", "day")
-ggsave("pheno.single.day.png", bg = "white",
-       height = 500, width = 2500, units = 'px',
-       dpi = 200)

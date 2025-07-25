@@ -1,7 +1,7 @@
 #' Import BirdNET data into R
 #'
 #' @param files Files to be imported
-#' @param format Character. The format which it is saved; either "csv" or "txt".
+#' @param format Character. The file format; either "csv" or "txt".
 #' @param conf Character. Filter by confidence level. Defaults to 0.5 (50%).
 #'
 #' @returns
@@ -9,7 +9,9 @@
 #' @export
 #'
 #' @examples
-import_birdnet <- function(files, format = "csv", conf = 0.5) {
+import_birdnet <- function(files,
+                           format = "csv",
+                           conf = 0.5) {
 
   dfs <- lapply(files, function(file) {
 
@@ -42,7 +44,10 @@ import_birdnet <- function(files, format = "csv", conf = 0.5) {
 
   # Filter out any empty data frames before binding rows
   dfs <- Filter(function(df) nrow(df) > 0, dfs)
-  merged_df <- bind_rows(dfs)
+
+  common_cols <- Reduce(intersect, lapply(dfs, names))
+  merged_df <- do.call(rbind, lapply(dfs, function(x) x[common_cols]))
+  # merged_df <- do.call(rbind,dfs)
 
   merged_df$date <- as_date(merged_df$date)
 
