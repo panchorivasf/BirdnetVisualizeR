@@ -4,26 +4,23 @@
 \alias{vocal_activity_heatmap}
 \title{Create a heatmap of bird vocal activity by month and hour}
 \usage{
-vocal_activity_heatmap(df, sp = NULL)
+vocal_activity_heatmap(df, species = NULL)
 }
 \arguments{
-\item{df}{A data frame containing bird detection data. Must include a 'datetime' column
-with POSIXct dates, and either 'Scientific.name' or 'Common.name' columns if filtering
-by species.}
-
-\item{sp}{Optional character string specifying the species to plot. Can be either the
-scientific name or common name (must match values in the data). If NULL (default),
-includes all species in the data.}
+\item{df}{A data frame containing bird detection data. Must include a
+'datetime' column with POSIXct dates, and either 'Scientific.name' or
+'Common.name' columns if filtering by species.}
 }
 \value{
-A ggplot object displaying the vocal activity heatmap. The x-axis shows hours
-  of the day (0-23), the y-axis shows months, and tile color represents the count of
-  vocalizations.
+A ggplot object displaying the vocal activity heatmap. The x-axis
+shows hours of the day (0-23), the y-axis shows months, and tile color
+represents the count of vocalizations.
 }
 \description{
-This function generates a heatmap visualization showing patterns of bird vocal activity
-across different hours of the day and months of the year. The heatmap uses color intensity
-to represent the frequency of detected vocalizations.
+This function generates a heatmap visualization showing patterns of bird
+vocal activity across different hours of the day and months of the year.
+The heatmap uses color intensity to represent the frequency of detected
+vocalizations.
 }
 \details{
 The function:
@@ -37,7 +34,7 @@ The function:
 \examples{
 \dontrun{
 # Plot vocal activity for a specific species
-vocal_activity_heatmap(df = BirdnetDetections, sp = "Anthus hodgsoni")
+vocal_activity_heatmap(df = BirdnetDetections, species= "Anthus hodgsoni")
 
 # Plot vocal activity for all species in the data
 vocal_activity_heatmap(df = BirdnetDetections)
