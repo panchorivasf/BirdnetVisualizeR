@@ -34,7 +34,7 @@
 #' }
 #'
 #' @importFrom dplyr filter mutate group_by summarise left_join
-#' @importFrom ggplot2 ggplot aes geom_tile scale_x_continuous scale_fill_viridis
+#' @importFrom ggplot2 ggplot aes geom_tile scale_x_continuous
 #' @importFrom ggplot2 theme_minimal theme element_text labs
 #' @importFrom lubridate month
 #' @importFrom viridis scale_fill_viridis
