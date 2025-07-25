@@ -21,6 +21,9 @@ Options:
 \item{min_days}{Numeric. Filters by the minimum number of days a species was
 detected.}
 }
+\value{
+a Plotly object.
+}
 \description{
 This function creates a "phenochart" with all the species
 detected with BirdNET. The chart is a stacked tile plot with a heatmap

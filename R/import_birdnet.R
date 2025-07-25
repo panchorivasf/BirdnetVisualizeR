@@ -4,11 +4,15 @@
 #' @param format Character. The file format; either "csv" or "txt".
 #' @param conf Character. Filter by confidence level. Defaults to 0.5 (50%).
 #'
-#' @returns
+#' @returns a tibble.
 #' @import warbleR dplyr tidyr lubridate
 #' @export
 #'
 #' @examples
+#'  \dontrun{
+#'  csvs <- list_csvs()
+#'  import_birdnet(csvs)
+#'  }
 import_birdnet <- function(files,
                            format = "csv",
                            conf = 0.5) {

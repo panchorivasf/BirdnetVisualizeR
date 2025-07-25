@@ -1,17 +1,16 @@
 Package: BirdnetVisualizeR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Fast plots for BirdNET results
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Jane", "Doe",
-      email = "jane@example.com",
+      "Francisco", "Rivas",
+      email = "fcorivasf@gmail.com",
       role = c("aut", "cre")
     )
   )
-Description: More about what it does (maybe more than one line).
-    Continuation lines should be indented.
-License: What license is it under?
+Description: This package provides tools to create interactive and static plots for BirdNET data.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2

@@ -13,6 +13,15 @@ import_birdnet(files, format = "csv", conf = 0.5)
 
 \item{conf}{Character. Filter by confidence level. Defaults to 0.5 (50%).}
 }
+\value{
+a tibble.
+}
 \description{
 Import BirdNET data into R
+}
+\examples{
+ \dontrun{
+ csvs <- list_csvs()
+ import_birdnet(csvs)
+ }
 }

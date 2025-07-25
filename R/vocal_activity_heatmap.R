@@ -8,7 +8,7 @@
 #' @param df A data frame containing bird detection data. Must include a
 #' 'datetime' column with POSIXct dates, and either 'Scientific.name' or
 #' 'Common.name' columns if filtering by species.
-#' @paramspeciesOptional character string specifying the species to plot. Can be
+#' @param species Optional character string specifying the species to plot. Can be
 #' either the scientific name or common name (must match values in the data).
 #' If NULL (default), includes all species in the data.
 #'

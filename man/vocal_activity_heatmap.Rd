@@ -10,6 +10,10 @@ vocal_activity_heatmap(df, species = NULL)
 \item{df}{A data frame containing bird detection data. Must include a
 'datetime' column with POSIXct dates, and either 'Scientific.name' or
 'Common.name' columns if filtering by species.}
+
+\item{species}{Optional character string specifying the species to plot. Can be
+either the scientific name or common name (must match values in the data).
+If NULL (default), includes all species in the data.}
 }
 \value{
 A ggplot object displaying the vocal activity heatmap. The x-axis

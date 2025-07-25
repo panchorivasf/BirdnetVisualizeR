@@ -17,7 +17,7 @@
 #' @param min_days Numeric. Filters by the minimum number of days a species was
 #' detected.
 #'
-#' @returns
+#' @returns a Plotly object.
 #' @export
 #'
 #' @examples

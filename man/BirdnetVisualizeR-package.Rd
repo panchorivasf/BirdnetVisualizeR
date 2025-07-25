@@ -4,12 +4,12 @@
 \name{BirdnetVisualizeR-package}
 \alias{BirdnetVisualizeR}
 \alias{BirdnetVisualizeR-package}
-\title{BirdnetVisualizeR: What the Package Does (Title Case)}
+\title{BirdnetVisualizeR: Fast plots for BirdNET results}
 \description{
-More about what it does (maybe more than one line). Continuation lines should be indented.
+This package provides tools to create interactive and static plots for BirdNET data.
 }
 \author{
-\strong{Maintainer}: Jane Doe \email{jane@example.com}
+\strong{Maintainer}: Francisco Rivas \email{fcorivasf@gmail.com}
 
 }
 \keyword{internal}
