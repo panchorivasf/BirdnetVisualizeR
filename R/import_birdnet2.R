@@ -36,11 +36,10 @@ import_birdnet2 <- function(files,
       # Extract filename from File column and process
       df <- df |>
         mutate(
-          filename = basename(File),
-          # Extract sensor.id, date, time from the File path
-          sensor.id = sub(".*/([^_]+)_.*", "\\1", File),
-          date = sub(".*_([0-9]{8})_.*", "\\1", File),
-          time = sub(".*_[0-9]{8}_([0-9]{6})\\..*", "\\1", File),
+          filename = str_remove(basename(File), "\\.wav$"),
+          sensor.id = str_extract(filename, "^[^_]+"),
+          date = str_extract(filename, "(?<=_)[0-9]{8}(?=_)"),  # 8 digits between "_"
+          time = str_extract(filename, "(?<=_)[0-9]{6}(?=\\.wav|$)"),
           datetime = ymd_hms(paste(date, substr(time, 1, 2), ":",
                                    substr(time, 3, 4), ":",
                                    substr(time, 5, 6),
