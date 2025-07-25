@@ -18,7 +18,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' top_sp_plot(S4A17644_list, " - sensor S4A17644")
+#' top_species(S4A17644_list, " - sensor S4A17644")
 #' }
 top_species <- function(birdnet_list, site_id = "", n_species = 10){
 
