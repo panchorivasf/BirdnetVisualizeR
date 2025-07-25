@@ -2,6 +2,7 @@
 
 export(birdnet_list)
 export(import_birdnet)
+export(import_birdnet2)
 export(list_csvs)
 export(pheno_chart)
 export(phenochart_single)
