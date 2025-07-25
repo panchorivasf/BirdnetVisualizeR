@@ -1,4 +1,4 @@
-#' Top N species
+#' Top species summary
 #'
 #' @description
 #' Get a stacked bar plot with top 10 species (i.e., the most detected)
@@ -6,6 +6,7 @@
 #' @param birdnet_list a data frame obtained with the "birdnet_list" function.
 #' @param site_id A string (text) with an identifier for the site, sensor, or
 #' plot (use quotations)
+#' @param n_species Number of top species to summarize.Default is 10
 #'
 #' @import dplyr
 #' @import ggplot2
@@ -19,19 +20,19 @@
 #' \dontrun{
 #' top_sp_plot(S4A17644_list, " - sensor S4A17644")
 #' }
-top_sp_plot <- function(birdnet_list, site_id){
+top_species <- function(birdnet_list, site_id = "", n_species = 10){
 
   # Create a unified list of top 10 species across all categories
   top_species <- birdnet_list |>
     arrange(desc(n.calls)) |>
-    top_n(10, n.calls) |>
+    top_n(n_species, n.calls) |>
     bind_rows(
       birdnet_list |>
         arrange(desc(n.days)) |>
-        top_n(10, n.days),
+        top_n(n_species, n.days),
       birdnet_list |>
         arrange(desc(call.rate)) |>
-        top_n(10, call.rate)
+        top_n(n_species, call.rate)
     ) |>
     distinct(Common.name) |>
     pull(Common.name)
@@ -53,24 +54,24 @@ top_sp_plot <- function(birdnet_list, site_id){
   # Make the plots
   top10days.plot <- create_plot(birdnet_list |>
                                   arrange(desc(n.days)) |>
-                                  top_n(10, n.days),
+                                  top_n(n_species, n.days),
                                 "n.days",
-                                paste("Top 10 species ", site_id, sep = "-"),
+                                paste0("Top ", n_species, " species - ", site_id),
                                 "Species", "Number of Days Detected")
 
   top10calls.plot <- create_plot(birdnet_list |>
                                    arrange(desc(n.calls)) |>
-                                   top_n(10, n.calls),
+                                   top_n(n_species, n.calls),
                                  "n.calls",
                                   "",
                                  "Species", "Number of Calls")
 
   top10rate.plot <- create_plot(birdnet_list |>
                                   arrange(desc(call.rate)) |>
-                                  top_n(10, call.rate),
-                                "call.rate",
+                                  top_n(n_species, call.rate),
+                                "call.rate.day",
                                 "",
-                                "Species", "Call rate (N calls / N days detected)")
+                                "Species", "Diel Call Rate (N calls / N days detected)")
 
   # Combine the plots
   finalPlot <- top10days.plot / top10calls.plot / top10rate.plot

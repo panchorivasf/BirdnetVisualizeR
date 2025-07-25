@@ -7,7 +7,7 @@
 #' TRUE.
 #'
 #' @returns a tibble.
-#' @import warbleR dplyr tidyr lubridate
+#' @import warbleR dplyr tidyr lubridate stringr
 #' @export
 #'
 #' @examples
