@@ -1,4 +1,4 @@
-#' Create a heatmap of bird vocal activity by month and hour
+#' Create a heatmap of bird vocal activity by month and hour of the day
 #'
 #' This function generates a heatmap visualization showing patterns of bird
 #' vocal activity across different hours of the day and months of the year.
@@ -27,10 +27,10 @@
 #' @examples
 #' \dontrun{
 #' # Plot vocal activity for a specific species
-#' vocal_activity_heatmap(df = BirdnetDetections, species= "Anthus hodgsoni")
+#' calendar_heatmap(df = BirdnetDetections, species= "Anthus hodgsoni")
 #'
 #' # Plot vocal activity for all species in the data
-#' vocal_activity_heatmap(df = BirdnetDetections)
+#' calendar_heatmap(df = BirdnetDetections)
 #' }
 #'
 #' @importFrom dplyr filter mutate group_by summarise left_join
@@ -41,12 +41,12 @@
 #' @importFrom tidyr replace_na
 #' @importFrom stats complete.cases
 #' @export
-vocal_activity_heatmap  <- function(df, species = NULL) {
+calendar_heatmap  <- function(df, species = NULL) {
 
-  if(!is.null(sp)){
+  if(!is.null(species)){
   # Filter data for the specified species
   df <- df |>
-    filter(Scientific.name == species | Common.name == sp)
+    filter(Scientific.name == species | Common.name == species)
 
   }
 
@@ -77,10 +77,10 @@ vocal_activity_heatmap  <- function(df, species = NULL) {
     theme(axis.text.x = element_text(angle = 0, hjust = 1),
           plot.title = element_text(size = 14, face = "bold"))
 
-  if(!is.null(sp)){
+  if(!is.null(species)){
   plot <- plot +
     labs(x = "Hour of the Day", y = "Month",
-         title = paste(sp, "vocal activity"))
+         title = paste(species, "vocal activity"))
 
   } else {
     plot <- plot +
