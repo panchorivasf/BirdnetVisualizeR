@@ -3,7 +3,7 @@
 #' @param files Files to be imported
 #' @param format Character. The file format; either "csv" or "txt".
 #' @param conf Character. Filter by confidence level. Defaults to 0.5 (50%).
-#' @param combined Logical. Whether to analyze a single combined CSV. Defaut is
+#' @param combined Logical. Whether to analyze a single combined CSV. Default is
 #' TRUE.
 #'
 #' @returns a tibble.
