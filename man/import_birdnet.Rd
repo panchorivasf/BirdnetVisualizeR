@@ -13,16 +13,24 @@ import_birdnet(files, format = "csv", conf = 0.5, combined = TRUE)
 
 \item{conf}{Character. Filter by confidence level. Defaults to 0.5 (50%).}
 
-\item{combined}{Logical. Whether to analyze a single combined CSV. Defaut is
+\item{combined}{Logical. Whether to analyze a single combined CSV. Default is
 TRUE.}
 }
 \value{
+a tibble.
+
 a tibble.
 }
 \description{
 Import BirdNET data into R
 }
 \examples{
+ \dontrun{
+ csvs <- list_csvs()
+ import_birdnet(csvs)
+ }
+Import BirdNET data into R
+
  \dontrun{
  csvs <- list_csvs()
  import_birdnet(csvs)

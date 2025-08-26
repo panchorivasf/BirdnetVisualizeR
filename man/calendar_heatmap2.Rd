@@ -50,7 +50,7 @@ calendar_heatmap2(df = BirdnetDetections, species= "Anthus hodgsoni")
 calendar_heatmap2(df = BirdnetDetections, background_color = "white")
 
 # Plot with light blue background for zero detections
-calendar_heatma2p(df = BirdnetDetections, background_color = "lightblue")
+calendar_heatmap2(df = BirdnetDetections, background_color = "lightblue")
 }
 
 }
