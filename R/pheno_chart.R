@@ -39,7 +39,8 @@
 #'
 #'
 #' }
-pheno_chart <- function(df, plot_title, sort = "start", min_days = 5) {
+pheno_chart <- function(df, plot_title = "", min_days = 5,
+                        sort = "start", desc = TRUE) {
 
   if(sort=="start"){
     sorting <- "the first date of detection"
@@ -49,6 +50,10 @@ pheno_chart <- function(df, plot_title, sort = "start", min_days = 5) {
     sorting <- "the total number of calls/songs detected"
   } else if (sort == "call.rate") {
     sorting <- "calling rate (total N of calls / total N of days detected)"
+  } else if (sort == "common.name") {
+    sorting <- "common name"
+  } else if (sort == "scientific.name") {
+    sorting <- "scientific name"
   }
 
   # Calculate detection metrics for each species
@@ -67,47 +72,115 @@ pheno_chart <- function(df, plot_title, sort = "start", min_days = 5) {
     filter(n.days >= min_days)
 
   # Order based on the specified criterion
+
+  # Order based on the specified criterion
   if (sort == "start") {
-    species_info <- species_info |>
-      arrange(first_detected)
-      # mutate(Common.name = factor(Common.name, levels = Common.name)) # Ensure the sort is preserved
+    if (desc) {
+      species_info <- species_info |>
+        arrange(desc(first_detected))
+    } else {
+      species_info <- species_info |>
+        arrange(first_detected)
+    }
   } else if (sort == "n.days") {
-    species_info <- species_info |>
-      arrange(n.days)
+    if (desc) {
+      species_info <- species_info |>
+        arrange(desc(n.days))
+    } else {
+      species_info <- species_info |>
+        arrange(n.days)
+    }
   } else if (sort == "n.calls") {
-    species_info <- species_info |>
-      arrange(n.calls)
-  } else if (sort == "call.rate"){
-    species_info <- species_info |>
-      arrange(call.rate)
+    if (desc) {
+      species_info <- species_info |>
+        arrange(desc(n.calls))
+    } else {
+      species_info <- species_info |>
+        arrange(n.calls)
+    }
+  } else if (sort == "call.rate") {
+    if (desc) {
+      species_info <- species_info |>
+        arrange(desc(call.rate))
+    } else {
+      species_info <- species_info |>
+        arrange(call.rate)
+    }
+  } else if (sort == "common.name") {
+    if (desc) {
+      species_info <- species_info |>
+        arrange(desc(Common.name))
+    } else {
+      species_info <- species_info |>
+        arrange(Common.name)
+    }
+  } else if (sort == "scientific.name") {
+    if (desc) {
+      species_info <- species_info |>
+        arrange(desc(Scientific.name))
+    } else {
+      species_info <- species_info |>
+        arrange(Scientific.name)
+    }
   } else {
-    stop("Invalid order parameter. Choose among 'start', 'n.days', 'n.calls', 'call.rate'.")
+    stop("Invalid order parameter. Choose among 'start', 'n.days', 'n.calls', 'call.rate',
+         'common.name', and 'scientific.name'")
   }
 
-  filtered_species <- species_info$Common.name
 
-  # Filter the original dataframe to include only the species meeting the min_days requirement
-  df <- df |>
-    filter(Common.name %in% filtered_species)
+  if (sort == "scientific.name"){
+    filtered_species <- species_info$Scientific.name
 
-  # Proceed with summarizing and plotting as before, now using the filtered and ordered dataset
-  df_summarized <- df |>
-    group_by(date, Common.name) |>
-    summarise(n = n(), .groups = "drop") |>
-    mutate(Common.name = factor(Common.name, levels = filtered_species))
+    # Filter the original dataframe to include only the species meeting the min_days requirement
+    df <- df |>
+      filter(Scientific.name %in% filtered_species)
+    # Proceed with summarizing and plotting as before, now using the filtered and ordered dataset
+    df_summarized <- df |>
+      group_by(date, Scientific.name) |>
+      summarise(n = n(), .groups = "drop") |>
+      mutate(Scientific.name = factor(Scientific.name, levels = filtered_species))
 
-  # Main plot
-  main_plot <- ggplot(df_summarized, aes(x = date, y = Common.name, fill = n)) +
-    geom_tile() +
-    scale_fill_gradientn(colors = c("#ffeda0", "orange", "red2")) +
-    labs(title = plot_title, x = "", y = "", fill = "Calls/sp/day",
-         subtitle = paste0("Species list sorted by ", sorting)) +
-    theme_minimal() +
-    theme(axis.text.x = element_blank(),
-          axis.ticks.x = element_blank(),
-          legend.position = c(0.2,20))+
-    scale_x_date(date_breaks = "1 week", date_labels = "%b %d",
-                 expand = c(0.005,0.005))
+    # Main plot
+    main_plot <- ggplot(df_summarized, aes(x = date, y = Scientific.name, fill = n)) +
+      geom_tile() +
+      scale_fill_gradientn(colors = c("#ffeda0", "orange", "red2")) +
+      labs(title = plot_title, x = "", y = "", fill = "Calls/sp/day",
+           subtitle = paste0("Species list sorted by ", sorting)) +
+      theme_minimal() +
+      theme(axis.text.x = element_blank(),
+            axis.ticks.x = element_blank(),
+            legend.position = c(0.2,20))+
+      scale_x_date(date_breaks = "1 week", date_labels = "%b %d",
+                   expand = c(0.005,0.005))
+
+  } else {
+    filtered_species <- species_info$Common.name
+
+    # Filter the original dataframe to include only the species meeting the min_days requirement
+    df <- df |>
+      filter(Common.name %in% filtered_species)
+
+    # Proceed with summarizing and plotting as before, now using the filtered and ordered dataset
+    df_summarized <- df |>
+      group_by(date, Common.name) |>
+      summarise(n = n(), .groups = "drop") |>
+      mutate(Common.name = factor(Common.name, levels = filtered_species))
+
+    # Main plot
+    main_plot <- ggplot(df_summarized, aes(x = date, y = Common.name, fill = n)) +
+      geom_tile() +
+      scale_fill_gradientn(colors = c("#ffeda0", "orange", "red2")) +
+      labs(title = plot_title, x = "", y = "", fill = "Calls/sp/day",
+           subtitle = paste0("Species list sorted by ", sorting)) +
+      theme_minimal() +
+      theme(axis.text.x = element_blank(),
+            axis.ticks.x = element_blank(),
+            legend.position = c(0.2,20))+
+      scale_x_date(date_breaks = "1 week", date_labels = "%b %d",
+                   expand = c(0.005,0.005))
+  }
+
+
 
   # Species richness plot, now based on the filtered data
   species_richness <- df |>
