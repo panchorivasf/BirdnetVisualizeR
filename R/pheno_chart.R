@@ -8,14 +8,17 @@
 #'
 #' @param df A data frame obtained with "import_birdnet" function.
 #' @param plot_title Character. A title for the plot (use quotation marks).
+#' @param min_days Numeric. Minimum number of days of detection for a species
+#' to be included in the plot.
 #' @param sort Character. Specifies how to order the species list vertically.
 #' Options:
 #' "start" (default) sorts by the first day of detection;
 #' "n.days" sorts by the total number of days that the species was detected;
 #' "n.calls" sorts by the total number of calls detected by species;
 #' "call.rate" sorts by the calling rate of each species (n.calls/n.days)
-#' @param min_days Numeric. Filters by the minimum number of days a species was
-#' detected.
+#' "common.name" sorts by the common name of the species, in English.
+#' "scientific.name" sorts by the binomial scientific name of the species.
+#' @param desc  Logical. Whether to sort in descending order.
 #'
 #' @returns a Plotly object.
 #' @export
