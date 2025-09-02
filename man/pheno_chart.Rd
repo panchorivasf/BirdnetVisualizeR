@@ -4,22 +4,26 @@
 \alias{pheno_chart}
 \title{Phenological charts}
 \usage{
-pheno_chart(df, plot_title, sort = "start", min_days = 5)
+pheno_chart(df, plot_title = "", min_days = 5, sort = "start", desc = TRUE)
 }
 \arguments{
 \item{df}{A data frame obtained with "import_birdnet" function.}
 
 \item{plot_title}{Character. A title for the plot (use quotation marks).}
 
+\item{min_days}{Numeric. Minimum number of days of detection for a species
+to be included in the plot.}
+
 \item{sort}{Character. Specifies how to order the species list vertically.
 Options:
 "start" (default) sorts by the first day of detection;
 "n.days" sorts by the total number of days that the species was detected;
 "n.calls" sorts by the total number of calls detected by species;
-"call.rate" sorts by the calling rate of each species (n.calls/n.days)}
+"call.rate" sorts by the calling rate of each species (n.calls/n.days)
+"common.name" sorts by the common name of the species, in English.
+"scientific.name" sorts by the binomial scientific name of the species.}
 
-\item{min_days}{Numeric. Filters by the minimum number of days a species was
-detected.}
+\item{desc}{Logical. Whether to sort in descending order.}
 }
 \value{
 a Plotly object.

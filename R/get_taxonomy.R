@@ -51,7 +51,7 @@ get_taxonomy <- function(df, species_col = "Scientific.name") {
   species_list <- unique(df[[species_col]])
 
   # Use map_dfr to map over the list and row-bind the results
-  taxonomy_df <- map_dfr(species_list, ~{
+  taxonomy_df <- purrr::map_dfr(species_list, ~{
     result <- rgbif::name_backbone(name = .x)
     result$search_name <- .x
     return(result)

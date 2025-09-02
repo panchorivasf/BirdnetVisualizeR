@@ -18,19 +18,11 @@ TRUE.}
 }
 \value{
 a tibble.
-
-a tibble.
 }
 \description{
 Import BirdNET data into R
 }
 \examples{
- \dontrun{
- csvs <- list_csvs()
- import_birdnet(csvs)
- }
-Import BirdNET data into R
-
  \dontrun{
  csvs <- list_csvs()
  import_birdnet(csvs)
