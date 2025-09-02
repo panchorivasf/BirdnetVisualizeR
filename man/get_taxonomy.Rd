@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_taxonomy.R
 \name{get_taxonomy}
 \alias{get_taxonomy}
-\title{Retrieve GBIF Taxonomy for a List of Species}
+\title{Retrieve GBIF Taxonomy and Join to Original Data}
 \usage{
 get_taxonomy(df, species_col = "Scientific.name")
 }
@@ -13,24 +13,24 @@ get_taxonomy(df, species_col = "Scientific.name")
 Default is "Scientific.name".}
 }
 \value{
-A dataframe with taxonomic information from GBIF. The returned dataframe includes:
+The original dataframe with additional taxonomic columns joined from GBIF:
 \describe{
   \item{status}{Taxonomic status (e.g., "ACCEPTED", "SYNONYM")}
   \item{order}{Taxonomic order}
   \item{family}{Taxonomic family}
   \item{genus}{Genus name}
   \item{species}{Species epithet}
-  \item{search_name}{Original species name used for the query}
 }
 }
 \description{
-This function takes a dataframe containing species names and returns taxonomic
-information from the GBIF backbone taxonomy for each unique species.
+This function takes a dataframe containing species names, queries the GBIF
+backbone taxonomy for each unique species, and joins the taxonomic information
+back to the original dataframe.
 }
 \details{
-The function extracts unique species names from the specified column and queries
-the GBIF backbone taxonomy using `rgbif::name_backbone()`. It returns a dataframe
-with key taxonomic information for each species.
+The function extracts unique species names from the specified column, queries
+the GBIF backbone taxonomy using `rgbif::name_backbone()`, and joins the resulting
+taxonomic information back to the original dataframe using the species name as key.
 }
 \examples{
 \dontrun{
@@ -40,11 +40,11 @@ species_df <- data.frame(
   Count = c(5, 2, 8)
 )
 
-# Get taxonomy information
-taxonomy_data <- get_taxonomy(species_df)
+# Get taxonomy information joined to original data
+result_df <- get_taxonomy(species_df)
 
 # View results
-print(taxonomy_data)
+print(result_df)
 }
 
 }
