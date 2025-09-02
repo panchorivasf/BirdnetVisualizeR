@@ -81,33 +81,33 @@ pheno_chart <- function(df, plot_title = "", min_days = 5,
     if (desc) {
       species_info <- species_info |>
         arrange(desc(first_detected))
-    } else {
-      species_info <- species_info |>
-        arrange(first_detected)
+      } else {
+        species_info <- species_info |>
+          arrange(first_detected)
     }
   } else if (sort == "n.days") {
     if (desc) {
       species_info <- species_info |>
-        arrange(desc(n.days))
+        arrange(n.days)
     } else {
       species_info <- species_info |>
-        arrange(n.days)
+        arrange(desc(n.days))
     }
   } else if (sort == "n.calls") {
     if (desc) {
       species_info <- species_info |>
-        arrange(desc(n.calls))
+        arrange(n.calls)
     } else {
       species_info <- species_info |>
-        arrange(n.calls)
+        arrange(desc(n.calls))
     }
   } else if (sort == "call.rate") {
     if (desc) {
       species_info <- species_info |>
-        arrange(desc(call.rate))
+        arrange(call.rate)
     } else {
       species_info <- species_info |>
-        arrange(call.rate)
+        arrange(desc(call.rate))
     }
   } else if (sort == "common.name") {
     if (desc) {
