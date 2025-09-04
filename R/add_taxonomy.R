@@ -31,7 +31,7 @@
 #' )
 #'
 #' # Get taxonomy information joined to original data
-#' result_df <- get_taxonomy(species_df)
+#' result_df <- add_taxonomy(species_df)
 #'
 #' # View results
 #' print(result_df)
@@ -41,7 +41,7 @@
 #' @importFrom dplyr select distinct left_join
 #' @importFrom purrr map_dfr
 #' @export
-get_taxonomy <- function(df, species_col = "Scientific.name") {
+add_taxonomy <- function(df, species_col = "Scientific.name") {
 
   # Input validation
   if (!species_col %in% names(df)) {
