@@ -17,7 +17,8 @@ birdnet_list <- function(df, sort = "n.days") {
 
   # Calculate the total calls per week for each species
   calls_per_week <- df |>
-    group_by(Scientific.name, Common.name, week = floor_date(date, "week")) |>
+    group_by(Scientific.name, Common.name,
+             week = floor_date(date, "week")) |>
     summarize(
       weekly_calls = n(), # Total number of detections per week
       .groups = 'drop'
