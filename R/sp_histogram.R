@@ -28,7 +28,7 @@
 #'
 #' @importFrom ggplot2 ggplot aes geom_histogram labs theme_minimal
 #' @importFrom plotly ggplotly
-#' @importFrom stats hist
+#' @importFrom graphics hist
 #' @importFrom grDevices rainbow
 #' @importFrom dplyr group_by tally
 #' @export
