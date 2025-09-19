@@ -8,11 +8,11 @@ sp_histogram(
   data,
   species_col = "species",
   top_n = 5,
-  plot_type = "plotly",
-  bins = 30,
-  title = "Species Count Distribution",
-  x_label = "Number of Observations",
-  y_label = "Frequency"
+  bins = 100,
+  x_exp_factor = 1.3,
+  title = "Acoustic detections by species",
+  x_label = "Number of Detections",
+  y_label = "Number of Species"
 )
 }
 \arguments{
@@ -22,9 +22,10 @@ sp_histogram(
 
 \item{top_n}{Integer. Number of top species to label (0 for no labels, default: 5)}
 
-\item{plot_type}{Character. Plot type: "base", "ggplot2", or "plotly" (default: "plotly")}
-
 \item{bins}{Integer. Number of bins for histogram (default: 30)}
+
+\item{x_exp_factor}{Numeric. Expansion factor for the right side of the
+x-axis, used to accomodate species labe.s}
 
 \item{title}{Character. Plot title (default: "Species Count Distribution")}
 
