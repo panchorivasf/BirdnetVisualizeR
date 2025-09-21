@@ -18,7 +18,7 @@ taxon_treemap <- function(data, save_png = TRUE, prefix = "") {
   tree_plot <- ggplot(birds_summary, aes(area = n, fill = order,
                                          label = species,
                                          subgroup = order)) +
-    geom_treemap() +
+    geom_treemap(color = "grey30", size = 2) +
     geom_treemap_subgroup_border(color = "white", size = 3) +
     geom_treemap_text(aes(label = species),
                       color = "black",

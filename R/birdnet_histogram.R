@@ -10,6 +10,7 @@
 #' @param x_exp_factor Numeric. Expansion factor for the right side of the
 #' x-axis, used to accommodate species labels.
 #' @param save_png  Logical. Whether to save plot as png.
+#' @param prefix Character. A prefix for the file name.
 #'
 #' @return A histogram plot showing distribution of species observation counts.
 #'         Returns ggplot object for "ggplot2", plotly object for "plotly",
@@ -49,7 +50,8 @@ birdnet_histogram <- function(data,
                               x_label = "Number of Detections",
                               y_label = "auto",
                               exp_x_factor = 1.3,
-                              save_png = TRUE) {
+                              save_png = TRUE,
+                              prefix = "") {
 
 
   if (y_label == "auto"){
@@ -221,11 +223,11 @@ birdnet_histogram <- function(data,
   }
 
   if(save_png) {
-    ggsave(filename = paste0(file.prefix, "_birdnet_hist.png"),
+    ggsave(filename = paste0(prefix, "_birdnet_hist.png"),
            plot = p, bg = "white",
            width = 12, height = 8, units = "in",
            dpi = 300)
-    cat("Histogram saved as:", paste0(file.prefix, "_birdnet_hist.png"), "\n")
+    cat("Histogram saved as:", paste0(prefix, "_birdnet_hist.png"), "\n")
   }
 
   return(p)

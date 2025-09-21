@@ -13,7 +13,8 @@ birdnet_histogram(
   x_label = "Number of Detections",
   y_label = "auto",
   exp_x_factor = 1.3,
-  save_png = TRUE
+  save_png = TRUE,
+  prefix = ""
 )
 }
 \arguments{
@@ -32,6 +33,8 @@ birdnet_histogram(
 \item{y_label}{Character. Y-axis label (default: "auto")}
 
 \item{save_png}{Logical. Whether to save plot as png.}
+
+\item{prefix}{Character. A prefix for the file name.}
 
 \item{x_exp_factor}{Numeric. Expansion factor for the right side of the
 x-axis, used to accommodate species labels.}
