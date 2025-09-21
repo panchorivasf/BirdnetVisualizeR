@@ -19,4 +19,8 @@ Imports: dplyr,
          ggplot2,
          lubridate,
          tidyr,
-         stringr
+         stringr,
+         flextable,
+         officer,
+         purrr,
+         rlang
