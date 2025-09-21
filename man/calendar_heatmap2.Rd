@@ -9,7 +9,9 @@ calendar_heatmap2(
   species = NULL,
   background_color = "transparent",
   save_png = TRUE,
-  prefix = ""
+  prefix = "",
+  height = 8,
+  width = 15
 )
 }
 \arguments{
@@ -27,6 +29,10 @@ no detections (count = 0). Default is "transparent".}
 \item{save_png}{Logical. Whether to save plot as png.}
 
 \item{prefix}{Characer. Prefix for file name.}
+
+\item{height}{Numeric. Height in inches.}
+
+\item{width}{Numeric. Width in inches.}
 }
 \value{
 A ggplot object displaying the vocal activity heatmap. The x-axis

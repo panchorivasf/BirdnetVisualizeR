@@ -11,7 +11,8 @@
 #' @export
 #'
 vocal_hyperdominance <- function(data, group_var = species,
-                                 past_half = TRUE){
+                                 past_half = TRUE,
+                                 verbose = TRUE){
 
   group_var <- enquo(group_var)
 
@@ -37,7 +38,10 @@ vocal_hyperdominance <- function(data, group_var = species,
       filter(cumulative <= 50)
   }
 
-  print(knitr::kable(dominant_sp))
+  if (verbose){
+    print(knitr::kable(dominant_sp))
+  }
+
 
   invisible(dominant_sp)
 

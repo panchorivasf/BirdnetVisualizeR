@@ -4,7 +4,12 @@
 \alias{vocal_hyperdominance}
 \title{Vocal hyperdominance per grouping variable}
 \usage{
-vocal_hyperdominance(data, group_var = species, past_half = TRUE)
+vocal_hyperdominance(
+  data,
+  group_var = species,
+  past_half = TRUE,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{data}{A data frame with BirdNET outputs and, optionally,
