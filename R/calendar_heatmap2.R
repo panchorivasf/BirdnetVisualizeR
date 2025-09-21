@@ -15,6 +15,8 @@
 #' no detections (count = 0). Default is "transparent".
 #' @param save_png Logical. Whether to save plot as png.
 #' @param prefix Characer. Prefix for file name.
+#' @param height Numeric. Height in inches.
+#' @param width Numeric. Width in inches.
 #'
 #' @return A ggplot object displaying the vocal activity heatmap. The x-axis
 #' shows hours of the day (0-23), the y-axis shows months, and tile color
@@ -54,7 +56,9 @@
 calendar_heatmap2 <- function(df, species = NULL,
                               background_color = "transparent",
                               save_png = TRUE,
-                              prefix = "") {
+                              prefix = "",
+                              height = 8,
+                              width = 15) {
   if(!is.null(species)){
     # Filter data for the specified species
     df <- df |>
@@ -129,7 +133,7 @@ calendar_heatmap2 <- function(df, species = NULL,
   if(save_png) {
     ggsave(filename = paste0(prefix, "_calendar.png"),
            plot = plot, bg = "white",
-           width = 12, height = 8, units = "in",
+           width = width, height = height, units = "in",
            dpi = 300)
     cat("Treemap saved as:", paste0(prefix, "_calendar.png"), "\n")
   }
