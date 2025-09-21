@@ -13,6 +13,8 @@
 #' If NULL (default), includes all species in the data.
 #' @param background_color Character string specifying the color for tiles with
 #' no detections (count = 0). Default is "transparent".
+#' @param save_png Logical. Whether to save plot as png.
+#' @param prefix Characer. Prefix for file name.
 #'
 #' @return A ggplot object displaying the vocal activity heatmap. The x-axis
 #' shows hours of the day (0-23), the y-axis shows months, and tile color
@@ -49,7 +51,10 @@
 #' @importFrom tidyr replace_na
 #' @importFrom stats complete.cases
 #' @export
-calendar_heatmap2 <- function(df, species = NULL, background_color = "transparent") {
+calendar_heatmap2 <- function(df, species = NULL,
+                              background_color = "transparent",
+                              save_png = TRUE,
+                              prefix = "") {
   if(!is.null(species)){
     # Filter data for the specified species
     df <- df |>
@@ -119,6 +124,14 @@ calendar_heatmap2 <- function(df, species = NULL, background_color = "transparen
       labs(x = "Hour of the Day", y = "Month",
            title = "All birds",
            subtitle = "Vocal Activity")
+  }
+
+  if(save_png) {
+    ggsave(filename = paste0(prefix, "_calendar.png"),
+           plot = plot, bg = "white",
+           width = 12, height = 8, units = "in",
+           dpi = 300)
+    cat("Treemap saved as:", paste0(prefix, "_calendar.png"), "\n")
   }
 
   print(plot)

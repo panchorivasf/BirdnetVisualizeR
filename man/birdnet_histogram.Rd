@@ -14,6 +14,8 @@ birdnet_histogram(
   y_label = "auto",
   exp_x_factor = 1.3,
   save_png = TRUE,
+  width = 15,
+  height = 8,
   prefix = ""
 )
 }

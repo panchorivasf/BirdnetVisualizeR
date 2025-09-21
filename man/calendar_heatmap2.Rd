@@ -4,7 +4,13 @@
 \alias{calendar_heatmap2}
 \title{Create a heatmap of bird vocal activity by month and hour of the day}
 \usage{
-calendar_heatmap2(df, species = NULL, background_color = "transparent")
+calendar_heatmap2(
+  df,
+  species = NULL,
+  background_color = "transparent",
+  save_png = TRUE,
+  prefix = ""
+)
 }
 \arguments{
 \item{df}{A data frame containing bird detection data. Must include a
@@ -17,6 +23,10 @@ If NULL (default), includes all species in the data.}
 
 \item{background_color}{Character string specifying the color for tiles with
 no detections (count = 0). Default is "transparent".}
+
+\item{save_png}{Logical. Whether to save plot as png.}
+
+\item{prefix}{Characer. Prefix for file name.}
 }
 \value{
 A ggplot object displaying the vocal activity heatmap. The x-axis

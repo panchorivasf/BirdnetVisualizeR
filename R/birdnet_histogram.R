@@ -51,6 +51,8 @@ birdnet_histogram <- function(data,
                               y_label = "auto",
                               exp_x_factor = 1.3,
                               save_png = TRUE,
+                              width = 15,
+                              height = 8,
                               prefix = "") {
 
 
@@ -225,7 +227,7 @@ birdnet_histogram <- function(data,
   if(save_png) {
     ggsave(filename = paste0(prefix, "_birdnet_hist.png"),
            plot = p, bg = "white",
-           width = 12, height = 8, units = "in",
+           width = width, height = height, units = "in",
            dpi = 300)
     cat("Histogram saved as:", paste0(prefix, "_birdnet_hist.png"), "\n")
   }
