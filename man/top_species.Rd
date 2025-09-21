@@ -4,10 +4,10 @@
 \alias{top_species}
 \title{Top species summary}
 \usage{
-top_species(birdnet_list, site_id = "", n_species = 10)
+top_species(data, site_id = "", n_species = 10)
 }
 \arguments{
-\item{birdnet_list}{a data frame obtained with the "birdnet_list" function.}
+\item{data}{a data frame containing BirdNET detections.}
 
 \item{site_id}{A string (text) with an identifier for the site, sensor, or
 plot (use quotations)}

@@ -1,14 +1,15 @@
 #' Create a histogram of species observation counts
 #'
 #' @param data Data frame containing species observation data
-#' @param species_col Character. Name of column containing species names (default: "species")
+#' @param y_var Character. Name of column containing taxa name (default: "species")
 #' @param top_n Integer. Number of top species to label (0 for no labels, default: 5)
 #' @param bins Integer. Number of bins for histogram (default: 30)
 #' @param title Character. Plot title (default: "Species Count Distribution")
 #' @param x_label Character. X-axis label (default: "Number of Observations")
+#' @param y_label Character. Y-axis label (default: "auto")
 #' @param x_exp_factor Numeric. Expansion factor for the right side of the
-#' x-axis, used to accomodate species labe.s
-#' @param y_label Character. Y-axis label (default: "Frequency")
+#' x-axis, used to accommodate species labels.
+#' @param save_png  Logical. Whether to save plot as png.
 #'
 #' @return A histogram plot showing distribution of species observation counts.
 #'         Returns ggplot object for "ggplot2", plotly object for "plotly",
@@ -33,14 +34,36 @@
 #' @importFrom grDevices rainbow
 #' @importFrom dplyr group_by tally
 #' @export
-sp_histogram <- function(data,
-                         species_col = "species",
-                         top_n = 5,
-                         bins = 100,
-                         x_exp_factor = 1.3,
-                         title = "Acoustic detections by species",
-                         x_label = "Number of Detections",
-                         y_label = "Number of Species") {
+#' @examples
+#' \dontrun{
+#' birdnet_histogram(all_data_geotax_clean,
+#'                  y_var = "family",
+#'                  top_n = 5,
+#'                  exp_x_factor = 1.2)
+#' }
+birdnet_histogram <- function(data,
+                              y_var = "species",
+                              top_n = 5,
+                              bins = 100,
+                              title = "",
+                              x_label = "Number of Detections",
+                              y_label = "auto",
+                              exp_x_factor = 1.3,
+                              save_png = TRUE) {
+
+
+  if (y_label == "auto"){
+    if (y_var == "family") {
+      y_label <- "Number of families"
+    } else if (y_var == "order"){
+      y_label <- "Number of orders"
+    } else if (y_var == "species"){
+      y_label <- "Number of species"
+    }
+
+
+  }
+
 
   if (!require(ggplot2, quietly = TRUE)) stop("ggplot2 package is required")
   if (!require(dplyr, quietly = TRUE)) stop("dplyr package is required")
@@ -48,13 +71,13 @@ sp_histogram <- function(data,
 
   # Calculate species counts
   data1 <- data |>
-    dplyr::group_by(!!rlang::sym(species_col)) |>
+    dplyr::group_by(!!rlang::sym(y_var)) |>
     dplyr::tally(sort = TRUE)
 
   # Color palette
   nice_colors <- c("#E31A1C", "#1F78B4", "#33A02C", "#FF7F00", "#6A3D9A",
                    "#FB9A99", "#A6CEE3", "#B2DF8A", "#FDBF6F", "#CAB2D6")
-  label_colors <- rep(nice_colors, length.out = min(top_n, nrow(data1)))
+  y_varors <- rep(nice_colors, length.out = min(top_n, nrow(data1)))
 
   # Define explicit breaks
   bin_breaks <- pretty(range(data1$n), n = bins)
@@ -73,16 +96,7 @@ sp_histogram <- function(data,
     ) |>
     mutate(count = ifelse(is.na(n), 0, n)) |>
     select(-n)
-  # # Build histogram data (cut into bins with known breaks)
-  # data1$bin <- cut(data1$n, breaks = bin_breaks, include.lowest = TRUE, right = FALSE)
-  #
-  # hist_data <- data1 |>
-  #   group_by(bin) |>
-  #   summarise(count = n(), .groups = "drop") |>
-  #   mutate(
-  #     xmin = bin_breaks[-length(bin_breaks)],
-  #     xmax = bin_breaks[-1]
-  #   )
+
 
   # Base histogram
   p <- ggplot(data1, aes(x = n)) +
@@ -105,7 +119,7 @@ sp_histogram <- function(data,
 
     highlight_list <- lapply(1:nrow(top_species), function(i) {
       species_count <- top_species$n[i]
-      color <- label_colors[i]
+      color <- y_varors[i]
 
       bin_info <- hist_data[hist_data$xmin <= species_count & hist_data$xmax > species_count, ]
       if (nrow(bin_info) > 0) {
@@ -142,8 +156,8 @@ sp_histogram <- function(data,
 
     label_list <- lapply(1:nrow(top_species), function(i) {
       species_count <- top_species$n[i]
-      species_name <- top_species[[species_col]][i]
-      color <- label_colors[i]
+      species_name <- top_species[[y_var]][i]
+      color <- y_varors[i]
 
       bin_info <- hist_data[hist_data$xmin <= species_count & hist_data$xmax > species_count, ]
       if (nrow(bin_info) > 0) {
@@ -199,14 +213,21 @@ sp_histogram <- function(data,
 
       final_max_y <- max(label_data$label_y) + max_y * 0.1
       p <- p + coord_cartesian(
-        xlim = c(min_x, max_x * x_exp_factor),
+        xlim = c(min_x, max_x * exp_x_factor),
         ylim = c(0, final_max_y),
         expand = FALSE
       )
     }
   }
 
+  if(save_png) {
+    ggsave(filename = paste0(file.prefix, "_birdnet_hist.png"),
+           plot = p, bg = "white",
+           width = 12, height = 8, units = "in",
+           dpi = 300)
+    cat("Histogram saved as:", paste0(file.prefix, "_birdnet_hist.png"), "\n")
+  }
+
   return(p)
 }
-
 

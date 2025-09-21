@@ -3,7 +3,7 @@
 #' @description
 #' Get a stacked bar plot with top 10 species (i.e., the most detected)
 #'
-#' @param birdnet_list a data frame obtained with the "birdnet_list" function.
+#' @param data a data frame containing BirdNET detections.
 #' @param site_id A string (text) with an identifier for the site, sensor, or
 #' plot (use quotations)
 #' @param n_species Number of top species to summarize.Default is 10
@@ -20,8 +20,9 @@
 #' \dontrun{
 #' top_species(S4A17644_list, " - sensor S4A17644")
 #' }
-top_species <- function(birdnet_list, site_id = "", n_species = 10){
+top_species <- function(data, site_id = "", n_species = 10){
 
+  birdnet_list <- birdnet_list(data)
   # Create a unified list of top 10 species across all categories
   top_species <- birdnet_list |>
     arrange(desc(n.calls)) |>

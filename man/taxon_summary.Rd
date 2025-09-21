@@ -4,13 +4,14 @@
 \alias{taxon_summary}
 \title{Taxonomic summary}
 \usage{
-taxon_summary(data)
+taxon_summary(data, data.name = "birds", report = TRUE)
 }
 \arguments{
 \item{data}{A data frame}
 }
 \value{
-A tibble with number of species, families, and orders.
+A tibble with number of detections(count),
+number of species, families, and orders represented.
 }
 \description{
 Calculates the number of species, families, and orders of birds
